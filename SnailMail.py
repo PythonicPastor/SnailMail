@@ -18,7 +18,7 @@ def loadSignIn(user):
     bList = json.loads(jsonContent)
     return (bList['email'], bList['password'])
 
-def sendEmail(signIn, emailTo, subject, body, smtpServ = 'smtp.gmail.com', smtpPort=465):
+def sendEmail(signIn, emailTo, subject, body, imapServ = 'smtp.gmail.com', imapPort=465):
     emailFrom, passw = loadSignIn(signIn)
     em = EmailMessage()
     em['From'] = emailFrom
@@ -63,8 +63,8 @@ def getEmails(fname, selCrit='Inbox',imapServ='imap.gmail.com', imapPort = '993'
     imap.close
     return json.dumps(rcvEmails, indent = 4)
 
-def searchEmails(fname,  search,  searchCrit ='BODY', selInbox='"[Gmail]/All Mail"',imapServ='imap.gmail.com', imapPort = '993'):
-    emailAdd, passw = loadSignIn(fname)
+def searchEmails(signIn,  search,  searchCrit ='BODY', selInbox='"[Gmail]/All Mail"',imapServ='imap.gmail.com', imapPort = '993'):
+    emailAdd, passw = loadSignIn(signIn)
     imap = imaplib.IMAP4_SSL(imapServ)
 
     imap.login(emailAdd, passw)
@@ -94,8 +94,8 @@ def searchEmails(fname,  search,  searchCrit ='BODY', selInbox='"[Gmail]/All Mai
     imap.close
     return json.dumps(rcvEmails, indent = 4) 
 
-def delEmails(fname,  search,  searchCrit ='BODY', selInbox='"[Gmail]/All Mail"',imapServ='imap.gmail.com', imapPort = '993'):
-    emailAdd, passw = loadSignIn(fname)
+def delEmails(signIn,  search,  searchCrit ='BODY', selInbox='"[Gmail]/All Mail"',imapServ='imap.gmail.com', imapPort = '993'):
+    emailAdd, passw = loadSignIn(signIn)
     imap = imaplib.IMAP4_SSL(imapServ)
 
     imap.login(emailAdd, passw)
@@ -134,4 +134,3 @@ def  helpCrit():
     UNKEYWORD "string" - match messages that do not have the keyword "string"\n\
     UNSEEN - match messages which have not been read yet'
     )
-delEmails('simplyA',  'AA000')
