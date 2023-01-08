@@ -16,17 +16,23 @@ If you dont see the App passwords button turn on two-step verification.
 and you should be ready to use SnailMail(assuming your using google)
 
 Commands:
+* - variables not nessisary to fill in if using defaults specified
+
 import SnailMail as sm
 sm.makeSignIn(email, passw, fname) - Make a New Sign In 
-
-sm.sendEmail(signIn, emailTo, subject, body, *smtpServ, *smtpPort)
-  signIn - file name as string for signIn (.json not needed)
-  emailTo - email your sending to as string
+sm.sendEmail(signIn, emailTo, subject, body, *imapServ, *imapPort)
+sm.getEmails(signIn, selCrit='Inbox', *imapServ, *imapPort)  
+sm.searchEmails(signIn,  search,  *searchCrit, *selInbox,*imapServ, *imapPort)
+sm.delEmails(signIn,  search,  *searchCrit, *selInbox, *imapServ, *imapPort)
+  email - Email used (string)
+  passw - Password Token (Not email password)
+  fname - assgined string for signIn ('mysignin')
+  signIn - same as fname
+  emailTo - email address asstring to send email to ('exampleuser@website.com')
   subject - subject line of email
-  body - the actual email content
-  smtpServ - SMTP server (google Default)
-  smtpPort - SMTP port (google Default)
-  
-getEmails(fname, selCrit='Inbox', *imapServ, *imapPort)
-  
+  body - body of email
+  *searchCrit - type sm.helpCrit() when using for more info (Default 'BODY')
+  *selInbox - which inbox to use (default '"[Gmail]/All Mail"')
+  *imapServ - SMTP Server Address(default google SMTP server)
+  *imapPort - SMTP Server Port (default google SMTP port)
   
