@@ -1,4 +1,5 @@
 # SnailMail
+## OPEN AS RAW
 A module that simplifies the usage of the imap module for the purpose of sending, reading, searching, and deleteing emails right from the python console
 
 please note that you need to make a sign in file using SnailMail.makeSignIn('email', 'passwordToken', 'filename')
